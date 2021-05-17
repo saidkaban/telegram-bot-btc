@@ -13,7 +13,7 @@ import schedule, time
 
 local = get_localzone()
 # Bot tokeni buraya
-TOKEN = "1735792840:AAGztgCguKKYJvaIYd0tBKurJh6nQB8unGk"
+TOKEN = "yourtokenhere"
 
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
                     level=logging.INFO)

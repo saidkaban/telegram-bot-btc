@@ -7,7 +7,7 @@ import schedule, time, threading
 
 local = get_localzone()
 
-TOKEN = "1735792840:AAGztgCguKKYJvaIYd0tBKurJh6nQB8unGk"
+TOKEN = "yourtokenhere"
 
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
                     level=logging.INFO)
@@ -51,7 +51,6 @@ def timer(update, context):
     schedule.every().hour.at(":59").do(getInfo,update=update, context=context)
     stop_run_continuously = run_continuously()
     
-
 def error(update, context):
     logger.warning('Update "%s" caused error "%s"', update, context.error)
 
