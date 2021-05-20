@@ -15,18 +15,15 @@ logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s
 logger = logging.getLogger(__name__)
 
 def start(update, context):
-    update.message.reply_text('Let\'s get start!')
+    update.message.reply_text('Let\'s get started!')
 
 def help(update, context):
-    update.message.reply_text('You dont need help!')
-
-def getHigh(obj):
-    return obj['high']
+    update.message.reply_text('You don\'t need help!')
 
 def getInfo(update, context):
     data = requests.get('https://dev-api.shrimpy.io/v1/exchanges/coinbasepro/candles?quoteTradingSymbol=USDT&baseTradingSymbol=BTC&interval=1H')
     candles = data.json()[-5:]
-    candles = list(map(getHigh,candles))
+    candles = list(map(lambda obj: obj["close"], candles))
     maxValue = max(candles)
     output = "Son 5 saatteki en yüksek mum kapanışları\n\n{}\n{}\n{}\n{}\n{}\n\nEn yüksek kapanış: {}".format(candles[0],candles[1],candles[2],candles[3],candles[4],maxValue)
     update.message.reply_text(output)
@@ -48,7 +45,7 @@ def run_continuously(interval=1):
 
 def timer(update, context):
     getInfo(update, context)
-    schedule.every().hour.at(":59").do(getInfo,update=update, context=context)
+    schedule.every().hour.at(":02").do(getInfo,update=update, context=context)
     stop_run_continuously = run_continuously()
     
 def error(update, context):
